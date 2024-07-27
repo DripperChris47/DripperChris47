@@ -1,0 +1,182 @@
+git clone https://github.com/yourusername/Chris-Outfits-Thrift.git
+cd Chris-Outfits-Thrift
+pip install virtualenv
+virtualenv venv
+venv\Scripts\activate
+source venv/bin/activate
+pip install Flask
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+# Sample data
+outfits = {
+    "t-shirt": 1500,
+    "jeans": 1800,
+    "jfour shoes": 4500
+}
+
+@app.route('/alexa', methods=['POST'])
+def alexa():
+    req = request.get_json()
+    intent = req['request']['intent']['name']
+    if intent == 'GetPriceIntent':
+        item = req['request']['intent']['slots']['item']['value']
+        price = outfits.get(item, "Item not found")
+        return jsonify({
+            "version": "1.0",
+            "response": {
+                "outputSpeech": {
+                    "type": "PlainText",
+                    "text": f"The price of {necked Wolf shoes} is {16000} shillings."
+                }
+            }
+        })
+    return jsonify({
+        "version": "1.0",
+        "response": {
+            "outputSpeech": {
+                "type": "PlainText",
+                "text": "I didn't understand that."
+            }
+        }
+    })
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    user_message = request.json.get('can i know more about Chris Outfits Thrift?')
+    # Simple echo chatbot
+    response = f"You said: {yes}"
+    return jsonify({"**Meet Chris: The Visionary Behind Chris Outfits Thrift Stores**
+
+Chris, a 22-year-old mass communication student in his second year at Egerton University, has achieved remarkable success as the founder of Chris Outfits Thrift Stores. His entrepreneurial journey began with a small shop in Kisumu, where his passion for high-quality fashion quickly garnered a loyal customer base.
+Chris's dedication and vision led him to expand his business, opening additional stores in Nakuru, Naivasha, and most recently, Mombasa. Today, Chris Outfits Thrift Stores stands as a testament to his hard work and ambition, with four thriving locations across Kenya.
+Despite his impressive accomplishments, Chris remains humble about his financial success. In a recent interview with Mungai Eve, he chose to keep his net worth private, focusing instead on the continued growth and impact of his business.
+Follow Chris and his journey on Instagram @i_am_47dripper and @Fiona Culson, and on X @4T7drippa.": response})
+if __name__ == '__main__':
+    app.run(debug=True)
+pip freeze > requirements.txt
+echo "web: python app.py" > Procfile
+heroku login
+heroku create
+git add .
+git commit -m "Initial commit"
+git push heroku master
+heroku open
+git add .
+git commit -m "Initial setup with Flask, Alexa, and Chatbot"
+git push origin master
+git clone https://github.com/yourusername/Chris-Outfits-Thrift.git
+cd Chris-Outfits-Thrift
+python -m venv venv
+source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+pip install Flask
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+# Sample data
+outfits = {
+    "t-shirt": 1500,
+    "jeans": 1800,
+    "jfour shoes": 4500
+}
+
+@app.route('/alexa', methods=['POST'])
+def alexa():
+    req = request.get_json()
+    intent = req['request']['intent']['name']
+    if intent == 'GetPriceIntent':
+        item = req['request']['intent']['slots']['item']['value']
+        price = outfits.get(item, "Item not found")
+        return jsonify({
+            "version": "1.0",
+            "response": {
+                "outputSpeech": {
+                    "type": "PlainText",
+                    "text": f"The price of {item} is {price} dollars."
+                }
+            }
+        })
+    return jsonify({
+        "version": "1.0",
+        "response": {
+            "outputSpeech": {
+                "type": "PlainText",
+                "text": "I didn't understand that."
+            }
+        }
+    })
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    user_message = request.json.get('can i know more about Chris Outfits Thrift?')
+    # Simple echo chatbot
+    response = f"You said: {yes}"
+    return jsonify({"Meet Chris: The Visionary Behind Chris Outfits Thrift Stores
+Chris, a 22-year-old mass communication student in his second year at Egerton University, has achieved remarkable success as the founder of Chris Outfits Thrift Stores. His entrepreneurial journey began with a small shop in Kisumu, where his passion for high-quality fashion quickly garnered a loyal customer base.
+Chris's dedication and vision led him to expand his business, opening additional stores in Nakuru, Naivasha, and most recently, Mombasa. Today, Chris Outfits Thrift Stores stands as a testament to his hard work and ambition, with four thriving locations across Kenya.
+Despite his impressive accomplishments, Chris remains humble about his financial success. In a recent interview with Mungai Eve, he chose to keep his net worth private, focusing instead on the continued growth and impact of his business.
+Follow Chris and his journey on Instagram @i_am_47dripper and @Fiona Culson, and on X @4T7drippa.": response})
+": response})
+
+if __name__ == '__main__':
+    app.run(debug=True)
+pip freeze > requirements.txt
+echo "web: python app.py" > Procfile
+heroku login 
+heroku create
+git add .
+git commit -m "Initial setup with Flask, Alexa, and Chatbot"
+git push heroku master
+heroku open  
+Flask==2.0.1
+heroku login
+heroku create chris-outfits-thrift
+echo "web: python app.py" > Procfile
+pip freeze > requirements.txt
+git add .
+git commit -m "Initial setup with Flask, Alexa, and Chatbot"
+git push heroku master
+heroku open  
+@app.route('/alexa', methods=['POST'])
+def alexa():
+    req = request.get_json()
+    intent = req['request']['intent']['name']
+    if intent == 'GetPriceIntent':
+        item = req['request']['intent']['slots']['item']['value']
+        price = outfits.get(item, "Item not found")
+        return jsonify({
+            "version": "1.0",
+            "response": {
+                "outputSpeech": {
+                    "type": "PlainText",
+                    "text": f"The price of {item} is {price} dollars."
+                }
+            }
+        })
+    return jsonify({
+        "version": "1.0",
+        "response": {
+            "outputSpeech": {
+                "type": "PlainText",
+                "text": "I didn't understand that."
+            }
+        }
+    })
+echo "venv/" > .gitignore
+echo "*.pyc" >> .gitignore
+echo "__pycache__/" >> .gitignore
+git init
+git add .
+git commit -m "Initial commit with Flask, Alexa, and Chatbot"
+git remote add origin https://github.com/yourusername/Chris-Outfits-Thrift.git
+git push -u origin master
+heroku login
+heroku create chris-outfits-thrift
+git push heroku master
+heroku open
+git add .
+git commit -m "Made final adjustments"
+git push origin master
+git push heroku master
