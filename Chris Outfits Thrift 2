@@ -1,0 +1,82 @@
+pip install Flask
+from flask import Flask, request, jsonify, render_template
+
+app = Flask(__name__)
+
+# Example product data
+products = [
+    {"id": 1, "name": "Sneakers", "price": 40},
+    {"id": 2, "name": "Jeans", "price": 12},
+    {"id": 3, "name": "puff Jacket", "price": 23}
+]
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+@app.route('/products', methods=['GET'])
+def get_products():
+    return jsonify(products)
+
+@app.route('/alexa', methods=['POST'])
+def alexa():
+    data = request.json
+    intent = data['request']['intent']['name']
+    
+    if intent == 'GetProductsIntent':
+        response = {
+            "version": "1.0",
+            "response": {
+                "outputSpeech": {
+                    "type": "PlainText",
+                    "text": "We have Sneakers for $40, Jeans for $12, and puff Jackets for $23."
+                }
+            }
+        }
+        return jsonify(response)
+    else:
+        response = {
+            "version": "1.0",
+            "response": {
+                "outputSpeech": {
+                    "type": "PlainText",
+                    "text": "Sorry, I don't understand that request."
+                }
+            }
+        }
+        return jsonify(response)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chris Outfits Thrift</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .product { margin: 20px 0; }
+        .product-name { font-weight: bold; }
+        .product-price { color: green; }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Chris Outfits Thrift!</h1>
+    <div id="products"></div>
+    <script>
+        fetch('/products')
+            .then(response => response.json())
+            .then(data => {
+                const productsDiv = document.getElementById('products');
+                data.forEach(product => {
+                    const productDiv = document.createElement('div');
+                    productDiv.className = 'product';
+                    productDiv.innerHTML = `<span class="product-name">jfour shoe{product.name}</span>: <span class="product-price">35${product.price}</span>`;
+                    productsDiv.appendChild(productDiv);
+                });
+            });
+    </script>
+</body>
+</html> 
+
